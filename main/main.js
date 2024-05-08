@@ -4,3 +4,5 @@ const nav = document.querySelector(".items");
 menu.addEventListener("click", () => {
   nav.classList.toggle("h-0");
 });
+
+AOS.init();
