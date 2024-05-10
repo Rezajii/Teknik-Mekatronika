@@ -3,6 +3,7 @@ const nav = document.querySelector(".items");
 let displays = document.querySelectorAll(".num");
 let interval = 1500;
 const info = document.querySelector("#info");
+let stop = false;
 
 menu.addEventListener("click", () => {
   nav.classList.toggle("h-0");
@@ -15,7 +16,7 @@ window.onscroll = () => {
   let offset = info.clientTop;
   let height = info.clientHeight;
 
-  if (top >= offset && top < offset + height) {
+  if (top >= offset && top < offset + height && !stop) {
     displays.forEach((display) => {
       let startvalue = 0;
       let endvalue = parseInt(display.getAttribute("data-val"));
@@ -25,6 +26,7 @@ window.onscroll = () => {
         startvalue += 1;
         display.textContent = startvalue;
         if (startvalue == endvalue) {
+          stop = true;
           clearInterval(counter);
         }
       }, duration);
